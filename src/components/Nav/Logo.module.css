@@ -1,0 +1,23 @@
+.logoContainer {
+  border: 0.2rem solid var(--primary-color-light);
+  border-radius: 1000rem;
+  transition: all 0.3s;
+  color: var(--primary-color-dark);
+}
+
+.logoText {
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 0.8rem;
+  user-select: none;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.logoContainer:hover {
+  transform: scale(1.5);
+}
+
+.logoContainer:hover .logoText {
+  transform: scale(0.8);
+}

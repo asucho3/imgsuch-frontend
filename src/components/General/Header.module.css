@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  background-color: var(--primary-color-light);
+  padding: 0 6rem;
+  justify-content: start;
+  align-items: center;
+  height: 6rem;
+  /* clip-path: polygon(0 0, 100% 0%, 100% 50%, 45% 100%, 0 100%); */
+  clip-path: ellipse(100% 100% at 5% 0%);
+}
+
+.headerBack {
+  background-color: var(--primary-color);
+  z-index: 1;
+}
+
+.headerText {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-5rem);
+  }
+  to {
+    opacity: 1;
+  }
+}

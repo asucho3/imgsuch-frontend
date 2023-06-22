@@ -1,0 +1,6 @@
+.commentBox {
+  height: 30rem;
+  border: 0.1rem solid var(--color-black);
+  border-radius: 0.3rem;
+  overflow-y: scroll;
+}

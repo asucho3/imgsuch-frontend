@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.upvote {
+  font-size: 4rem;
+  border: 0.2rem solid var(--color-black);
+  border-radius: 0.8rem;
+  padding: 1rem;
+}
+
+.upvote:hover {
+  background-color: var(--secondary-color-dark);
+  cursor: pointer;
+  animation-name: upvoteHover;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-timing-function: linear;
+  transition: all 0.3s;
+}
+
+@keyframes upvoteHover {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.currentRating {
+  font-size: 2rem;
+  opacity: 1;
+}

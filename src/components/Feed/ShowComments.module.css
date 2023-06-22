@@ -1,0 +1,16 @@
+.container {
+  border: 0.1rem solid var(--color-black);
+  border-radius: 0.8rem;
+  transition: all 0.3s;
+}
+
+.text {
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: var(--secondary-color-dark);
+}

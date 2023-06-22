@@ -1,0 +1,54 @@
+.searchContainer {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.searchBar {
+  background-color: var(--primary-color-light);
+  transition: all 0.3s;
+  height: 2rem;
+  padding: 2rem 2rem;
+  font-size: 2rem;
+  color: var(--color-black);
+}
+
+.searchBar::placeholder {
+  opacity: 0;
+}
+
+.searchBar:focus {
+  outline: none;
+}
+
+.searchBar:focus::placeholder {
+  opacity: 1;
+}
+
+.searchContainer:hover .searchBar,
+.searchBar:focus {
+  height: 100%;
+}
+
+.searchButton {
+  background-color: transparent;
+  font-size: 3rem;
+}
+
+.searchButton:hover {
+  animation-name: searchHover;
+  animation-duration: 1s;
+  animation-direction: normal;
+  animation-iteration-count: 1;
+
+  cursor: pointer;
+}
+
+@keyframes searchHover {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}

@@ -1,0 +1,38 @@
+.container {
+  border-bottom: 0.1rem solid var(--color-grey);
+  padding: 1rem;
+}
+.commentUser {
+  display: flex;
+  gap: 0.8rem;
+}
+.commentUserImage {
+  width: 5rem;
+}
+.commentUserName {
+  font-size: 1.2rem;
+}
+.commentText {
+  font-size: 1rem;
+}
+.commentInteract {
+  display: flex;
+  width: 2.4rem;
+  justify-content: center;
+
+  font-size: 1.6rem;
+  padding: 0.2rem rem;
+  border: 0.1rem solid var(--color-black);
+  border-radius: 0.3rem;
+
+  cursor: pointer;
+}
+.commentInteract:hover {
+  background-color: var(--secondary-color);
+}
+
+.commentUserNameInteract {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}

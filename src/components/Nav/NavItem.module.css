@@ -1,0 +1,35 @@
+.navItem {
+  height: 8rem;
+  width: 8rem;
+  position: relative;
+  font-size: 2.5rem;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navItem:hover {
+  box-shadow: 0 0.1rem 2rem;
+}
+
+.navText {
+  opacity: 0;
+  font-size: 2rem;
+}
+
+.navText,
+.navEmoji {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s;
+}
+
+.navItem:hover .navEmoji {
+  transform: translate(-50%, -80%);
+}
+.navItem:hover .navText {
+  opacity: 1;
+  transform: translate(-50%, 45%);
+}
