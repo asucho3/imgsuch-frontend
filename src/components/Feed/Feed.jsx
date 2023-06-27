@@ -2,29 +2,51 @@ import Header from "../General/Header";
 import styles from "./Feed.module.css";
 import FeedItem from "./FeedItem";
 
-function Feed() {
-  const testText1 = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
+const feedItems = [
+  {
+    id: 1,
+    image: "/img/leo.jpg",
+    name: "leo34",
+    rating: 4.8,
+    storyImage: "/img/story.jpg",
+    storyTitle: "cool title",
+    storyText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
     aperiam, commodi dolorem impedit tempora laboriosam reprehenderit
     recusandae explicabo molestias veniam, tenetur veritatis laborum
-    pariatur nemo vero hic nostrum numquam!`;
-  const testText2 = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-    aperiam, commodi dolorem`;
-  const testText3 = `weird...`;
-  const testText4 = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-  aperiam, commodi doloremLorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-  aperiam, commodi doloremLorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-  aperiam, commodi doloremLorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-  aperiam, commodi doloremLorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-  aperiam, commodi doloremLorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-  aperiam, commodi dolorem`;
+    pariatur nemo vero hic nostrum numquam!`,
+  },
+  {
+    id: 2,
+    image: "/img/leo.jpg",
+    name: "leo34",
+    rating: 4.8,
+    storyImage: "/img/story.jpg",
+    storyTitle: "cool title",
+    storyText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
+    aperiam, commodi dolorem impedit tempora laboriosam reprehenderit
+    recusandae explicabo molestias veniam, tenetur veritatis laborum
+    pariatur nemo vero hic nostrum numquam!`,
+  },
+  {
+    id: 3,
+    image: "/img/leo.jpg",
+    name: "leo34",
+    rating: 4.8,
+    storyImage: "/img/story.jpg",
+    storyTitle: "cool title",
+    storyText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
+    aperiam, commodi dolorem impedit tempora laboriosam reprehenderit
+    recusandae explicabo molestias veniam, tenetur veritatis laborum
+    pariatur nemo vero hic nostrum numquam!`,
+  },
+];
 
+function Feed() {
   return (
     <div className={styles.container}>
-      <Header>Welcome back</Header>
-      <FeedItem text={testText1} />
-      <FeedItem text={testText2} />
-      <FeedItem text={testText3} />
-      <FeedItem text={testText4} />
+      {feedItems.map((story) => (
+        <FeedItem story={story} key={story.id} />
+      ))}
     </div>
   );
 }

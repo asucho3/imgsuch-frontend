@@ -1,18 +1,33 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import Login from "./pages/Login";
 import Friends from "./pages/Friends";
+import Home from "./pages/Home";
 import Nav from "./components/Nav/Nav";
+import { useReducer } from "react";
+import AppLayout from "./components/AppLayout";
+import { UserProvider, useUser } from "./contexts/UserContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Nav />
-      <Routes>
-        <Route index path="/" element={<Home />}></Route>
-        <Route path="home" element={<Home />}></Route>
-        <Route path="friends" element={<Friends />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route index path="/" element={<Login />} />
+          <Route
+            path="app"
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="" element={<Home />} />
+            <Route path="friends" element={<Friends />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 

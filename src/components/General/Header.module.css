@@ -1,17 +1,31 @@
+.headerBack {
+  background-color: var(--primary-color);
+  width: 100rem;
+  margin: 0 auto;
+}
+
 .header {
+  margin-top: 8rem;
   display: flex;
-  background-color: var(--primary-color-light);
+  gap: 2rem;
+  background-image: linear-gradient(
+    to top left,
+    var(--primary-color-dark),
+    var(--primary-color-light)
+  );
   padding: 0 6rem;
   justify-content: start;
   align-items: center;
   height: 6rem;
+  width: 100rem;
   /* clip-path: polygon(0 0, 100% 0%, 100% 50%, 45% 100%, 0 100%); */
   clip-path: ellipse(100% 100% at 5% 0%);
 }
 
-.headerBack {
-  background-color: var(--primary-color);
-  z-index: 1;
+.headerImage {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.8rem;
 }
 
 .headerText {

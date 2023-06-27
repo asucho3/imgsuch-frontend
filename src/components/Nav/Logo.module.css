@@ -2,7 +2,7 @@
   border: 0.2rem solid var(--primary-color-light);
   border-radius: 1000rem;
   transition: all 0.3s;
-  color: var(--primary-color-dark);
+  color: var(--color-black);
 }
 
 .logoText {

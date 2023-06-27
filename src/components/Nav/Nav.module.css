@@ -1,11 +1,16 @@
 .container {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: var(--primary-color);
   width: 100rem;
   height: 8rem;
   margin: 0 auto;
   justify-content: space-between;
   padding: 0 4rem;
+  z-index: 1000;
 }
 
 .container .navList {
@@ -14,5 +19,4 @@
   list-style: none;
   font-size: 2rem;
   align-items: center;
-  z-index: 1000;
 }

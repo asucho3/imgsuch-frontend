@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100rem;
+  padding: 1rem;
+  margin: 0 auto;
+  justify-content: start;
+}
+
+.list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.listEmpty {
+  margin: 0 auto;
+  padding-top: 2rem;
+  font-size: 2rem;
+}
+
+.selectorContainer {
+  display: flex;
+  width: 100rem;
+  margin: 0 auto;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--primary-color);
+  padding: 2rem;
+}
+
+.selector {
+  font-size: 2rem;
+}
+
+.selection {
+  border-radius: 0.8rem;
+}

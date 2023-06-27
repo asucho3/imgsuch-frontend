@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  width: 32rem;
+  border: 0.2rem solid var(--color-grey);
+  border-radius: 0.8rem;
+  background-image: linear-gradient(
+    to top left,
+    var(--secondary-color),
+    var(--color-white)
+  );
+  transition: all 0.1s;
+  align-items: center;
+}
+.containerFriend {
+  display: flex;
+  width: 32rem;
+  border: 0.2rem solid var(--color-grey);
+  border-radius: 0.8rem;
+  background-image: linear-gradient(
+    to top left,
+    var(--primary-color),
+    var(--color-white)
+  );
+  transition: all 0.1s;
+  align-items: center;
+}
+
+.container:hover,
+.containerFriend:hover {
+  transform: scale(1.05);
+}
+
+.detailsAndInteractions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+  flex-grow: 1;
+  gap: 0.3rem;
+  justify-content: start;
+}
+
+.friendDetails {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  margin-left: 0.2rem;
+  align-items: start;
+}
+
+.friendPhotoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.friendPhoto {
+  flex-basis: 10rem;
+  padding: 1rem;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 1.6rem;
+}
+
+.friendName,
+.friendRating,
+.friendStories,
+.friendStatus {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  flex-grow: 1;
+}
+
+.friendInteractions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  background-color: var(--secondary-color);
+  justify-content: center;
+}

@@ -1,0 +1,79 @@
+.interactionGroup {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* https://github.com/n3r4zzurr0/svg-spinners */
+.spinner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform-origin: center;
+  animation: spinner_svv2 0.75s infinite linear;
+}
+@keyframes spinner_svv2 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.friendInteractionsSeeStories,
+.friendInteractionsSendMessage,
+.friendInteractionsRemoveFriend,
+.friendInteractionsAddFriend,
+.friendInteractionsRequestSent,
+.friendInteractionsRequestReceived {
+  display: flex;
+  flex: 1 1 auto;
+  padding: 0.4rem 0.4rem;
+  font-size: 1.3rem;
+  background-color: var(--primary-color);
+  border-bottom: 0.1rem solid var(--color-grey);
+  transition: all 0.3s;
+}
+
+.friendInteractionsAddFriend {
+  background-color: var(--primary-color);
+}
+
+.friendInteractionsRequestReceived {
+  background-color: var(--primary-color-dark);
+  animation-name: blinking;
+  animation-duration: 0.8s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blinking {
+  from {
+    background-color: var(--primary-color-dark);
+  }
+  to {
+    background-color: var(--primary-color-light);
+  }
+}
+
+.friendInteractionsRequestSent {
+  background-color: var(--color-grey);
+}
+
+.friendInteractionsSeeStories:hover,
+.friendInteractionsSendMessage:hover,
+.friendInteractionsRemoveFriend:hover,
+.friendInteractionsAddFriend:hover,
+.friendInteractionsRequestReceived:hover,
+.friendInteractionsRequestSent:hover {
+  cursor: pointer;
+  background-color: var(--secondary-color-dark);
+}
+
+.friendInteractionsSeeStories:disabled,
+.friendInteractionsSendMessage:disabled,
+.friendInteractionsRemoveFriend:disabled,
+.friendInteractionsAddFriend:disabled,
+.friendInteractionsRequestReceived:disabled,
+.friendInteractionsRequestSent:disabled {
+  cursor: not-allowed;
+}

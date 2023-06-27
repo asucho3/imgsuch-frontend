@@ -5,7 +5,7 @@ function TextExpander({ children }) {
   const LENGTH_LIMIT = 100;
 
   const [expand, setExpand] = useState(() => {
-    children.length < LENGTH_LIMIT ? true : false;
+    return children.length <= LENGTH_LIMIT ? true : false;
   });
   function handleClick() {
     setExpand((expand) => !expand);

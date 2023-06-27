@@ -1,0 +1,18 @@
+.alert {
+  animation-name: alert;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-timing-function: linear;
+  justify-self: start;
+  margin: 2rem 0;
+}
+
+@keyframes alert {
+  from {
+    background-color: var(--secondary-color);
+  }
+  to {
+    background-color: white;
+  }
+}

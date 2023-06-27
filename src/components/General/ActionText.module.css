@@ -1,0 +1,14 @@
+.actions {
+  display: flex;
+  align-items: start;
+}
+
+.action {
+  cursor: pointer;
+  border-bottom: 0.1rem solid var(--primary-color-light);
+  transition: all 0.3s;
+}
+
+.action:hover {
+  background-color: var(--primary-color-light);
+}

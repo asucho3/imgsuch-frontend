@@ -1,0 +1,36 @@
+.input {
+  position: relative;
+}
+
+.label {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0.6rem, -2rem);
+  transition: all 0.1s;
+  opacity: 1;
+}
+
+.box:placeholder-shown + .label {
+  visibility: hidden;
+  transform: translate(0.6rem, 0);
+  opacity: 0;
+}
+
+.box {
+  background-color: var(--secondary-color);
+  border-radius: 0.4rem;
+  width: 20rem;
+  padding: 0.2rem 1rem;
+  outline: none;
+  transition: all 0.1s;
+}
+
+.box:focus {
+  transform: scale(1.05);
+}
+
+.box::placeholder {
+  font-size: 1.5rem;
+}

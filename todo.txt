@@ -1,0 +1,4 @@
+done
+add all the API calls to utils/apiCalls.js
+
+start implementing the API calls into the website, ex. fetch friends stories etc.

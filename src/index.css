@@ -26,7 +26,3 @@ html {
   --color-grey: #ddd;
   --color-white: #fff;
 }
-
-body {
-  overflow-y: scroll;
-}
