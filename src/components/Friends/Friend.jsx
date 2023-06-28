@@ -9,11 +9,13 @@ import {
 import { useEffect, useState } from "react";
 import { useUser } from "../../contexts/UserContext";
 import ButtonInteraction from "../General/ButtonInteraction";
+import { useNavigate } from "react-router-dom";
 
 function Friend({ friend, isFriend }) {
   const { id, photo, name, rating, stories } = friend;
   const { friendsRequestsReceived, friendsRequestsSent, dispatch } = useUser();
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
 
   // send friend request
   async function handleSendFriendRequest() {
@@ -76,14 +78,9 @@ function Friend({ friend, isFriend }) {
   }
 
   // see stories
-  async function handleSeeStories() {
-    // try {
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // } finally {
-    //
-    // }
+  function handleSeeStories() {
+    dispatch({ type: "search/setDefaultSearch", payload: name });
+    navigate("/");
   }
 
   // send message

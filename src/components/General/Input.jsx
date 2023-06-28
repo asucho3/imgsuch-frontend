@@ -1,5 +1,5 @@
 import styles from "./Input.module.css";
-function Input({ field, type, setterFunction, children, id }) {
+function Input({ field, type, setterFunction, children, id, defaultValue }) {
   // if no id manually assigned, assign a UUID
   if (!id) id = crypto.randomUUID();
   return (
@@ -12,6 +12,7 @@ function Input({ field, type, setterFunction, children, id }) {
           value={field}
           onChange={(e) => setterFunction(e.target.value)}
           placeholder={children}
+          defaultValue={defaultValue}
         ></input>
         <label className={styles.label} htmlFor={id}>
           {children}

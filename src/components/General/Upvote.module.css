@@ -46,3 +46,22 @@
   font-size: 2rem;
   opacity: 1;
 }
+
+.upvoteContainer {
+  position: relative;
+}
+
+.spinnerContainer {
+  position: absolute;
+  top: 35%;
+  right: -4rem;
+}
+
+.upvoteGiven {
+  font-size: 4rem;
+  border: 0.2rem solid var(--color-black);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  background-color: var(--secondary-color-very-dark);
+  cursor: pointer;
+}

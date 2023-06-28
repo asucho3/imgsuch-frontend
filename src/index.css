@@ -17,10 +17,12 @@ html {
   --primary-color-light: #f1f8f6;
   --primary-color: #a1ccbc;
   --primary-color-dark: #70ab95;
+  --primary-color-very-dark: #0c5338;
 
   --secondary-color-light: #f8fce3;
   --secondary-color: #f1f9c6;
   --secondary-color-dark: #e2f09b;
+  --secondary-color-very-dark: #b2c260;
 
   --color-black: #333;
   --color-grey: #ddd;

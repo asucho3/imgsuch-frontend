@@ -1,52 +1,85 @@
+import { useEffect, useState } from "react";
 import Header from "../General/Header";
 import styles from "./Feed.module.css";
 import FeedItem from "./FeedItem";
-
-const feedItems = [
-  {
-    id: 1,
-    image: "/img/leo.jpg",
-    name: "leo34",
-    rating: 4.8,
-    storyImage: "/img/story.jpg",
-    storyTitle: "cool title",
-    storyText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-    aperiam, commodi dolorem impedit tempora laboriosam reprehenderit
-    recusandae explicabo molestias veniam, tenetur veritatis laborum
-    pariatur nemo vero hic nostrum numquam!`,
-  },
-  {
-    id: 2,
-    image: "/img/leo.jpg",
-    name: "leo34",
-    rating: 4.8,
-    storyImage: "/img/story.jpg",
-    storyTitle: "cool title",
-    storyText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-    aperiam, commodi dolorem impedit tempora laboriosam reprehenderit
-    recusandae explicabo molestias veniam, tenetur veritatis laborum
-    pariatur nemo vero hic nostrum numquam!`,
-  },
-  {
-    id: 3,
-    image: "/img/leo.jpg",
-    name: "leo34",
-    rating: 4.8,
-    storyImage: "/img/story.jpg",
-    storyTitle: "cool title",
-    storyText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque id
-    aperiam, commodi dolorem impedit tempora laboriosam reprehenderit
-    recusandae explicabo molestias veniam, tenetur veritatis laborum
-    pariatur nemo vero hic nostrum numquam!`,
-  },
-];
+import { getFriendsStories } from "../../utils/apiCalls";
+import { useUser } from "../../contexts/UserContext";
+import Loader from "../General/Loader";
+import Input from "../General/Input";
 
 function Feed() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { dispatch, stories, defaultSearch } = useUser();
+  const [search, setSearch] = useState("");
+  const [filteredStories, setFilteredStories] = useState([]);
+
+  useEffect(
+    function () {
+      // if there is no default search, return
+      if (!defaultSearch) return;
+      // if there is a default search, set the search to that value and immediately set the default back to the empty string
+      setSearch(defaultSearch);
+      dispatch({ type: "search/setDefaultSearch", payload: "" });
+    },
+    [defaultSearch, search, dispatch]
+  );
+
+  useEffect(
+    function () {
+      // filter the stories by author name
+      setFilteredStories([...stories]);
+      if (search.length > 0) {
+        setFilteredStories(
+          stories.filter((story) => {
+            if (story.author.name.includes(search)) return story;
+          })
+        );
+      }
+    },
+    [search, setFilteredStories, stories]
+  );
+
+  useEffect(
+    function () {
+      async function fetchStories() {
+        try {
+          setIsLoading(true);
+          const res = await getFriendsStories();
+          dispatch({ type: "user/storiesReceived", payload: res.data });
+        } catch (err) {
+          console.log(err);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+      fetchStories();
+    },
+    [dispatch]
+  );
+
+  if (!filteredStories) return null;
   return (
     <div className={styles.container}>
-      {feedItems.map((story) => (
-        <FeedItem story={story} key={story.id} />
-      ))}
+      <div className={styles.selectorContainer}>
+        <Input
+          field={search}
+          type="text"
+          setterFunction={setSearch}
+          id="search"
+          defaultValue={search}
+        >
+          Search for a user
+        </Input>
+      </div>
+      {isLoading && <Loader size={"big"} />}
+      {!isLoading &&
+        filteredStories.length > 0 &&
+        filteredStories
+          .map((story) => story)
+          .sort((a, b) => {
+            return new Date(b.createdOn) - new Date(a.createdOn);
+          })
+          .map((story, i) => <FeedItem story={story} key={story.id} />)}
     </div>
   );
 }

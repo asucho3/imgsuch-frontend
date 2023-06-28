@@ -6,6 +6,7 @@ import { useUser } from "../contexts/UserContext";
 import { getAllUsers, getFriends } from "../utils/apiCalls";
 import { useEffect, useState } from "react";
 import Input from "../components/General/Input";
+import Loader from "../components/General/Loader";
 
 // const dummyData = [
 //   {
@@ -39,14 +40,19 @@ function Friends() {
   useEffect(
     function () {
       async function fetchFriends() {
-        setIsLoading(true);
-        const friendsObj = await getFriends();
-        const friendsIds = friendsObj.data.friends.map((friend) => friend.id);
-        dispatch({
-          type: "user/refreshFriends",
-          payload: friendsIds,
-        });
-        setIsLoading(false);
+        try {
+          setIsLoading(true);
+          const friendsObj = await getFriends();
+          const friendsIds = friendsObj.data.friends.map((friend) => friend.id);
+          dispatch({
+            type: "user/refreshFriends",
+            payload: friendsIds,
+          });
+        } catch (err) {
+          console.log(err);
+        } finally {
+          setIsLoading(false);
+        }
       }
       fetchFriends();
     },
@@ -55,11 +61,15 @@ function Friends() {
 
   useEffect(function () {
     async function fetchUsers() {
-      setIsLoading(true);
-      const usersObj = await getAllUsers();
-      setUsers(usersObj.data);
-      setIsLoading(false);
-      console.log(usersObj);
+      try {
+        setIsLoading(true);
+        const usersObj = await getAllUsers();
+        setUsers(usersObj.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchUsers();
   }, []);
@@ -228,12 +238,17 @@ function Friends() {
         </Input>
       </div>
       <div className={styles.container}>
-        {filteredUsers.length === 0 && (
+        {isLoading && (
+          <div className={styles.spinnerContainer}>
+            <Loader size={"big"} />{" "}
+          </div>
+        )}
+        {!isLoading && filteredUsers.length === 0 && (
           <div className={styles.listEmpty}>
             Nothing to display here! Try changing your filtering options
           </div>
         )}
-        {filteredUsers.length > 0 && (
+        {!isLoading && filteredUsers.length > 0 && (
           <ul className={styles.list}>
             {filteredUsers
               .map((user) => {

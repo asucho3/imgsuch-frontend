@@ -4,20 +4,6 @@
   position: relative;
 }
 
-/* https://github.com/n3r4zzurr0/svg-spinners */
-.spinner {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform-origin: center;
-  animation: spinner_svv2 0.75s infinite linear;
-}
-@keyframes spinner_svv2 {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .friendInteractionsSeeStories,
 .friendInteractionsSendMessage,
 .friendInteractionsRemoveFriend,
@@ -76,4 +62,10 @@
 .friendInteractionsRequestReceived:disabled,
 .friendInteractionsRequestSent:disabled {
   cursor: not-allowed;
+}
+
+.spinnerContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  position: relative;
   flex-wrap: wrap;
   width: 100rem;
   padding: 1rem;
@@ -34,4 +35,11 @@
 
 .selection {
   border-radius: 0.8rem;
+}
+
+.spinnerContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 2rem;
 }

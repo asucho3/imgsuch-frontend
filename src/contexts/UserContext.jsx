@@ -18,6 +18,7 @@ const initialState = {
   rating: 0,
   role: "user",
   stories: [],
+  defaultSearch: "",
   isAuthenticated: false,
 };
 
@@ -80,11 +81,58 @@ function reducer(state, action) {
       localStorage.setItem("user", JSON.stringify(state));
       return state;
     }
+    case "user/commentToggleRate": {
+      if (state.ratedComments.includes(action.payload)) {
+        state = {
+          ...state,
+          ratedComments: state.ratedComments.filter(
+            (ratedComment) => ratedComment !== action.payload
+          ),
+        };
+      } else {
+        state = {
+          ...state,
+          ratedComments: [...state.ratedComments, action.payload],
+        };
+      }
+      localStorage.setItem("user", JSON.stringify(state));
+      return state;
+    }
+    case "user/storyToggleRate": {
+      if (state.ratedStories.includes(action.payload)) {
+        state = {
+          ...state,
+          ratedStories: state.ratedStories.filter(
+            (ratedStory) => ratedStory !== action.payload
+          ),
+        };
+      } else {
+        state = {
+          ...state,
+          ratedStories: [...state.ratedStories, action.payload],
+        };
+      }
+      localStorage.setItem("user", JSON.stringify(state));
+      return state;
+    }
+    case "user/storiesReceived": {
+      state = {
+        ...state,
+        stories: [...action.payload],
+      };
+      localStorage.setItem("user", JSON.stringify(state));
+      return state;
+    }
     case "user/refreshFriends": {
       return { ...state, friends: [...action.payload] };
     }
     case "user/logout": {
       return { ...initialState };
+    }
+    case "search/setDefaultSearch": {
+      state = { ...state, defaultSearch: action.payload };
+      localStorage.setItem("user", JSON.stringify(state));
+      return state;
     }
     case "user/loginFailure": {
       return { ...state };
@@ -112,6 +160,7 @@ const UserProvider = function ({ children }) {
       role,
       stories,
       isAuthenticated,
+      defaultSearch,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -135,6 +184,7 @@ const UserProvider = function ({ children }) {
         stories,
         dispatch,
         isAuthenticated,
+        defaultSearch,
       }}
     >
       {children}
