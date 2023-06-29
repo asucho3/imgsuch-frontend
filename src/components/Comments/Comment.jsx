@@ -4,6 +4,7 @@ import TextExpander from "../General/TextExpander";
 import styles from "./Comment.module.css";
 import { useUser } from "../../contexts/UserContext";
 import Loader from "../General/Loader";
+import CreateComment from "./CreateComment";
 
 function Comment({ commentObj }) {
   const { author, comment, createdOn, rating, _id } = commentObj;
@@ -37,6 +38,7 @@ function Comment({ commentObj }) {
         <img
           src={`${SERVER_URL}/img/users/${author.photo}`}
           className={styles.commentUserImage}
+          alt={`profile of ${author.name}`}
         ></img>
         <div className={styles.commentUserNameInteract}>
           <div className={styles.commentUserName}>{author.name}</div>

@@ -1,0 +1,33 @@
+.container {
+  position: fixed;
+  bottom: 15vh;
+  right: 15vw;
+  width: 10rem;
+  height: 10rem;
+  background-image: radial-gradient(
+    var(--primary-color),
+    var(--primary-color-dark)
+  );
+  border-radius: 50%;
+  color: transparent;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.container:hover {
+  background-image: radial-gradient(
+    var(--primary-color-dark),
+    var(--primary-color-very-dark)
+  );
+  transform: translateY(-1rem);
+  cursor: pointer;
+}
+
+.content {
+  position: absolute;
+  color: white;
+  width: 4rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

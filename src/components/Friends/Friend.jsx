@@ -80,7 +80,7 @@ function Friend({ friend, isFriend }) {
   // see stories
   function handleSeeStories() {
     dispatch({ type: "search/setDefaultSearch", payload: name });
-    navigate("/");
+    navigate("/app");
   }
 
   // send message

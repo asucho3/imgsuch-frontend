@@ -1,0 +1,45 @@
+.container {
+  width: 100rem;
+  margin: 4rem auto;
+}
+
+.header {
+  border-bottom: 0.1rem solid var(--color-grey);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.3rem;
+}
+
+.inputFields {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  font-size: 2rem;
+}
+
+.text,
+.title {
+  background-color: var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  outline-offset: 0.2rem;
+  outline-color: var(--primary-color-dark);
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.text {
+  width: 100%;
+  height: 30rem;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+}

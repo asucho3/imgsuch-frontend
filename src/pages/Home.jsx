@@ -1,6 +1,6 @@
 import Feed from "../components/Feed/Feed";
 import Header from "../components/General/Header";
-import Nav from "../components/Nav/Nav";
+import NewStoryButton from "../components/General/NewStoryButton";
 import { useUser } from "../contexts/UserContext";
 import styles from "./Home.module.css";
 
@@ -10,6 +10,7 @@ function Home() {
     <>
       <Header>Welcome, {name}</Header>
       <Feed className={styles.container} />
+      <NewStoryButton />
     </>
   );
 }

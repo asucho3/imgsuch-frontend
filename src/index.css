@@ -24,6 +24,11 @@ html {
   --secondary-color-dark: #e2f09b;
   --secondary-color-very-dark: #b2c260;
 
+  --tertiary-color-light: #d46a6a;
+  --tertiary-color: #aa3939;
+  --tertiary-color-dark: #801515;
+  --tertiary-color-very-dark: #550000;
+
   --color-black: #333;
   --color-grey: #ddd;
   --color-white: #fff;

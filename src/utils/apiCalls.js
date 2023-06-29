@@ -1,10 +1,5 @@
-const URL = `http://127.0.0.1:3000/api/v1`;
 const SERVER_URL = `http://127.0.0.1:3000`;
-
-// const testCookie = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTIwZjBmMDZhNDM2MDZjMGNhNWRhYyIsImlhdCI6MTY4NzU0NTY0MiwiZXhwIjoxNjk1MzIxNjQyfQ.55w-gJMBrM1QPsJwnBQdsApZCvacd6D6pCHXNfxHZ2c`;
-
-// const testUsr = `test@example.com`;
-// const testPass = `test1234`;
+const API_URL = `${SERVER_URL}/api/v1`;
 
 // auth
 
@@ -15,7 +10,7 @@ export const signup = async function (email, name, password, passwordConfirm) {
     password,
     passwordConfirm,
   });
-  const res = await fetch(`${URL}/users/signup`, {
+  const res = await fetch(`${API_URL}/users/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +23,7 @@ export const signup = async function (email, name, password, passwordConfirm) {
 };
 
 export const checkLoggedIn = async function () {
-  const res = await fetch(`${URL}/users/isLoggedIn`, {
+  const res = await fetch(`${API_URL}/users/isLoggedIn`, {
     method: "GET",
     credentials: "include",
   });
@@ -42,7 +37,7 @@ export const login = async function (email, password) {
     email,
     password,
   });
-  const res = await fetch(`${URL}/users/login`, {
+  const res = await fetch(`${API_URL}/users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -55,7 +50,7 @@ export const login = async function (email, password) {
 };
 
 export const logout = async function () {
-  const res = await fetch(`${URL}/users/logout`, {
+  const res = await fetch(`${API_URL}/users/logout`, {
     method: "POST",
     credentials: "include",
   });
@@ -67,7 +62,7 @@ export const forgotPassword = async function (email) {
   const auth = JSON.stringify({
     email,
   });
-  const res = await fetch(`${URL}/users/forgotPassword`, {
+  const res = await fetch(`${API_URL}/users/forgotPassword`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -83,7 +78,7 @@ export const resetPassword = async function (password, passwordConfirm) {
     password,
     passwordConfirm,
   });
-  const res = await fetch(`${URL}/users/resetPassword`, {
+  const res = await fetch(`${API_URL}/users/resetPassword`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -104,7 +99,7 @@ export const changePassword = async function (
     password,
     passwordConfirm,
   });
-  const res = await fetch(`${URL}/users/updatePassword`, {
+  const res = await fetch(`${API_URL}/users/updatePassword`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -117,7 +112,7 @@ export const changePassword = async function (
 };
 
 export const disableUser = async function (id) {
-  const res = await fetch(`${URL}/users/${id}/disableUser`, {
+  const res = await fetch(`${API_URL}/users/${id}/disableUser`, {
     method: "DELETE",
     credentials: "include",
   });
@@ -127,7 +122,7 @@ export const disableUser = async function (id) {
 
 // user
 export const sendFriendRequest = async function (target) {
-  const res = await fetch(`${URL}/users/${target}/sendFriendRequest`, {
+  const res = await fetch(`${API_URL}/users/${target}/sendFriendRequest`, {
     method: "POST",
     credentials: "include",
   });
@@ -136,7 +131,7 @@ export const sendFriendRequest = async function (target) {
 };
 
 export const updateProfile = async function (id, updatedProfile) {
-  const res = await fetch(`${URL}/users/${id}/updateProfile`, {
+  const res = await fetch(`${API_URL}/users/${id}/updateProfile`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -149,7 +144,7 @@ export const updateProfile = async function (id, updatedProfile) {
 };
 
 export const cancelFriendRequest = async function (target) {
-  const res = await fetch(`${URL}/users/${target}/cancelFriendRequest`, {
+  const res = await fetch(`${API_URL}/users/${target}/cancelFriendRequest`, {
     method: "POST",
     credentials: "include",
   });
@@ -158,7 +153,7 @@ export const cancelFriendRequest = async function (target) {
 };
 
 export const acceptFriendRequest = async function (target) {
-  const res = await fetch(`${URL}/users/${target}/acceptFriendRequest`, {
+  const res = await fetch(`${API_URL}/users/${target}/acceptFriendRequest`, {
     method: "POST",
     credentials: "include",
   });
@@ -167,12 +162,13 @@ export const acceptFriendRequest = async function (target) {
 };
 
 export const createStory = async function (newStory) {
-  const res = await fetch(`${URL}/users/createStory`, {
+  const res = await fetch(`${API_URL}/users/createStory`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newStory),
+    //headers option should not be used here because using FormData interface
+    // headers: {
+    //   "Content-Type": "multipart/form-data",
+    // },
+    body: newStory,
     credentials: "include",
   });
   const data = await res.json();
@@ -180,7 +176,7 @@ export const createStory = async function (newStory) {
 };
 
 export const getMyStories = async function () {
-  const res = await fetch(`${URL}/users/getMyStories`, {
+  const res = await fetch(`${API_URL}/users/getMyStories`, {
     method: "GET",
     credentials: "include",
   });
@@ -189,7 +185,7 @@ export const getMyStories = async function () {
 };
 
 export const removeFriend = async function (target) {
-  const res = await fetch(`${URL}/users/${target}/removeFriend`, {
+  const res = await fetch(`${API_URL}/users/${target}/removeFriend`, {
     method: "DELETE",
     credentials: "include",
   });
@@ -198,7 +194,7 @@ export const removeFriend = async function (target) {
 };
 
 export const getFriends = async function () {
-  const res = await fetch(`${URL}/users/getFriends`, {
+  const res = await fetch(`${API_URL}/users/getFriends`, {
     method: "GET",
     credentials: "include",
   });
@@ -207,7 +203,7 @@ export const getFriends = async function () {
 };
 
 export const getFriendsStories = async function () {
-  const res = await fetch(`${URL}/users/getFriendsStories`, {
+  const res = await fetch(`${API_URL}/users/getFriendsStories`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -218,7 +214,7 @@ export const getFriendsStories = async function () {
 };
 
 export const getAllUsers = async function () {
-  const res = await fetch(`${URL}/users`, {
+  const res = await fetch(`${API_URL}/users`, {
     method: "GET",
     credentials: "include",
   });
@@ -228,7 +224,7 @@ export const getAllUsers = async function () {
 
 // stories
 export const addComment = async function (target, newComment) {
-  const res = await fetch(`${URL}/stories/${target}/addComment`, {
+  const res = await fetch(`${API_URL}/stories/${target}/addComment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -241,7 +237,7 @@ export const addComment = async function (target, newComment) {
 };
 
 export const getComments = async function (target) {
-  const res = await fetch(`${URL}/stories/${target}/getComments`, {
+  const res = await fetch(`${API_URL}/stories/${target}/getComments`, {
     method: "GET",
     credentials: "include",
   });
@@ -250,7 +246,7 @@ export const getComments = async function (target) {
 };
 
 export const updateStory = async function (target, updatedStory) {
-  const res = await fetch(`${URL}/stories/${target}/updateStory`, {
+  const res = await fetch(`${API_URL}/stories/${target}/updateStory`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -263,7 +259,7 @@ export const updateStory = async function (target, updatedStory) {
 };
 
 export const disableStory = async function (target) {
-  const res = await fetch(`${URL}/stories/${target}/disableStory`, {
+  const res = await fetch(`${API_URL}/stories/${target}/disableStory`, {
     method: "DELETE",
     credentials: "include",
   });
@@ -272,7 +268,7 @@ export const disableStory = async function (target) {
 };
 
 export const getStory = async function (target) {
-  const res = await fetch(`${URL}/stories/${target}/getStory`, {
+  const res = await fetch(`${API_URL}/stories/${target}/getStory`, {
     method: "GET",
     credentials: "include",
   });
@@ -281,7 +277,7 @@ export const getStory = async function (target) {
 };
 
 export const getUserStories = async function (target) {
-  const res = await fetch(`${URL}/users/${target}/getUserStories`, {
+  const res = await fetch(`${API_URL}/users/${target}/getUserStories`, {
     method: "GET",
     credentials: "include",
   });
@@ -290,7 +286,7 @@ export const getUserStories = async function (target) {
 };
 
 export const toggleRateStory = async function (target) {
-  const res = await fetch(`${URL}/stories/${target}/toggleRateStory`, {
+  const res = await fetch(`${API_URL}/stories/${target}/toggleRateStory`, {
     method: "PATCH",
     credentials: "include",
   });
@@ -300,7 +296,7 @@ export const toggleRateStory = async function (target) {
 
 // comments
 export const updateComment = async function (target, updatedComment) {
-  const res = await fetch(`${URL}/comments/${target}/updateComment`, {
+  const res = await fetch(`${API_URL}/comments/${target}/updateComment`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -313,7 +309,7 @@ export const updateComment = async function (target, updatedComment) {
 };
 
 export const toggleRateComment = async function (target) {
-  const res = await fetch(`${URL}/comments/${target}/toggleRateComment`, {
+  const res = await fetch(`${API_URL}/comments/${target}/toggleRateComment`, {
     method: "PATCH",
     credentials: "include",
   });
@@ -322,7 +318,7 @@ export const toggleRateComment = async function (target) {
 };
 
 export const disableComment = async function (target) {
-  const res = await fetch(`${URL}/comments/${target}/disableComment`, {
+  const res = await fetch(`${API_URL}/comments/${target}/disableComment`, {
     method: "DELETE",
     credentials: "include",
   });
@@ -330,4 +326,4 @@ export const disableComment = async function (target) {
   return data;
 };
 
-export { URL, SERVER_URL };
+export { API_URL, SERVER_URL };

@@ -1,0 +1,28 @@
+.container {
+  position: absolute;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  color: transparent;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.container:hover {
+  cursor: pointer;
+  filter: contrast(150%);
+}
+
+.content {
+  position: absolute;
+  color: var(--color-white);
+  width: 2rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container:hover .content {
+  color: var(--color-black);
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../General/Header";
 import styles from "./Feed.module.css";
 import FeedItem from "./FeedItem";
-import { getFriendsStories } from "../../utils/apiCalls";
+import { getFriendsStories, getMyStories } from "../../utils/apiCalls";
 import { useUser } from "../../contexts/UserContext";
 import Loader from "../General/Loader";
 import Input from "../General/Input";
@@ -45,6 +45,8 @@ function Feed() {
         try {
           setIsLoading(true);
           const res = await getFriendsStories();
+          const myStories = await getMyStories();
+          res.data = [...res.data, ...myStories.data];
           dispatch({ type: "user/storiesReceived", payload: res.data });
         } catch (err) {
           console.log(err);
