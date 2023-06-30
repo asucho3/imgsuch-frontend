@@ -126,6 +126,11 @@ function reducer(state, action) {
     case "user/refreshFriends": {
       return { ...state, friends: [...action.payload] };
     }
+    case "user/updatedPhoto": {
+      state = { ...state, photo: action.payload };
+      localStorage.setItem("user", JSON.stringify(state));
+      return state;
+    }
     case "user/logout": {
       return { ...initialState };
     }

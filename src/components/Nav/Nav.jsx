@@ -31,13 +31,20 @@ function Nav() {
         </Link>
         <Link
           style={{ textDecoration: "inherit", color: "inherit" }}
-          to="friends"
+          to="/app/friends"
         >
           <NavItem emoji="😀" text="Friends" />
         </Link>
-        <NavItem emoji="📷" text="Images" />
+        <Link
+          style={{ textDecoration: "inherit", color: "inherit" }}
+          to="/app/user"
+        >
+          <NavItem emoji="🔧" text="Account" />
+        </Link>
+        <Link style={{ textDecoration: "inherit", color: "inherit" }} to="/app">
+          <NavItem emoji="📷" text="Stories" />
+        </Link>
         <NavItem emoji="🚀" text="Trending" />
-        <NavItem emoji="❔" text="About" />
         <NavItem emoji="🚪" text="Logout" onClick={handleLogout} />
       </ul>
       <Search />

@@ -1,6 +1,7 @@
 .container {
   border-bottom: 0.1rem solid var(--color-grey);
   padding: 1rem;
+  position: relative;
 }
 .commentUser {
   display: flex;
@@ -12,9 +13,12 @@
 }
 .commentUserName {
   font-size: 1.2rem;
+  font-weight: 700;
 }
 .commentText {
-  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  word-wrap: break-word;
 }
 .commentInteract {
   display: flex;
@@ -49,4 +53,8 @@
   position: absolute;
   top: 0.45rem;
   right: -3rem;
+}
+
+.editing {
+  background-color: var(--tertiary-color-light);
 }

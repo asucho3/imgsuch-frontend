@@ -9,6 +9,7 @@ import { UserProvider, useUser } from "./contexts/UserContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NewStory from "./pages/NewStory";
 import EditStory from "./pages/EditStory";
+import UserAccount from "./pages/UserAccount";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="newStory" element={<NewStory />} />
             <Route path="editStory" element={<EditStory />} />
             <Route path="friends" element={<Friends />} />
+            <Route path="user" element={<UserAccount />} />
           </Route>
         </Routes>
       </BrowserRouter>

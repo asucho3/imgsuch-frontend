@@ -8,7 +8,14 @@ import CreateComment from "./CreateComment";
 function CommentBox({ storyId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState([]);
+  const [edit, setEdit] = useState(null);
   const [refreshComments, setRefreshComments] = useState(false);
+
+  // if there is an edit in progress, copy the text of the comment being edited to pass it to CreateComment component
+  const editText =
+    edit !== null
+      ? comments.find((comment) => comment._id === edit).comment
+      : "";
 
   useEffect(
     function () {
@@ -17,11 +24,13 @@ function CommentBox({ storyId }) {
           setIsLoading(true);
           const res = await getComments(storyId);
           if (res.status === "success") {
+            // after fetching the comments, update the state with the response (which contains the comments)
             setComments(res.data);
           }
         } catch (err) {
           console.log(err);
         } finally {
+          // if we just fetched the comments, then refresh comments must be set to false
           setIsLoading(false);
           setRefreshComments(false);
         }
@@ -39,16 +48,25 @@ function CommentBox({ storyId }) {
           {!isLoading &&
             comments.length > 0 &&
             comments
-              .map((comment) => comment)
-              .sort((a, b) => b.createdOn < a.createdOn)
+              .slice()
+              .sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn))
               .map((comment) => (
-                <Comment key={comment._id} commentObj={comment} />
+                <Comment
+                  key={comment._id}
+                  commentObj={comment}
+                  edit={edit}
+                  setEdit={setEdit}
+                  setRefreshComments={setRefreshComments}
+                />
               ))}
           {!isLoading && comments.length === 0 && <div>No comments yet</div>}
         </div>
         <CreateComment
+          editText={editText}
           storyId={storyId}
           setRefreshComments={setRefreshComments}
+          commentId={edit}
+          setEdit={setEdit}
         />
       </div>
     </>

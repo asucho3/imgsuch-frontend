@@ -13,7 +13,7 @@
     var(--primary-color-dark),
     var(--primary-color-light)
   );
-  padding: 0 6rem;
+  padding: 0 5rem;
   justify-content: start;
   align-items: center;
   height: 6rem;

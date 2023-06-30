@@ -5,17 +5,29 @@ import RoundButton from "../General/RoundButton";
 import TextExpander from "../General/TextExpander";
 import Upvote from "../General/Upvote";
 import styles from "./FeedItem.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../../contexts/UserContext";
 import Loader from "../General/Loader";
+import ImageNavigation from "./ImageNavigation";
+import FullImage from "./FullImage";
 // import ShowComments from "./ShowComments";
 
-function FeedItem({ story }) {
+function FeedItem({ story, showFullImage, setShowFullImage }) {
   const { author, id, images, rating, text, title, disabled } = story;
   const { id: userId } = useUser();
   const [isLoading, setIsLoading] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const navigate = useNavigate();
 
+  const numImages = images?.length;
+
+  const imgsrc = images
+    ? `${SERVER_URL}/img/stories/${images[currentImageIndex]}`
+    : "";
+
+  // to edit the story, save the current details to an object in localstorage, and then navigate to editStory
+  // the details will be fetched there to set the initial values
   function handleEditStory() {
     const storyToEdit = {
       id,
@@ -31,6 +43,7 @@ function FeedItem({ story }) {
     try {
       const res = await disableStory(id);
       if (res.status === "success") {
+        // after deleting, refresh the page
         window.location.reload(false);
       }
       console.log(res);
@@ -41,13 +54,39 @@ function FeedItem({ story }) {
     }
   }
 
+  function handleImageNavigation(direction) {
+    if (direction === "previous") {
+      if (currentImageIndex > 0) {
+        setCurrentImageIndex((currentImageIndex) => currentImageIndex - 1);
+      }
+    }
+    if (direction === "next") {
+      if (currentImageIndex < numImages - 1) {
+        setCurrentImageIndex((currentImageIndex) => currentImageIndex + 1);
+      }
+    }
+  }
+
+  function handleImageClick() {
+    // showFullImage is set to point at the id of the selected story; that way, each FeedItem can be compared to the showFullImage id and determine which one is to be shown via the FullImage component
+    setShowFullImage((showFullImage) => (showFullImage === null ? id : null));
+  }
+
   if (!author) return null;
   return (
     <div className={styles.container}>
       {userId === author.id && (
         <>
-          <RoundButton type={"edit"} onClick={handleEditStory} />
-          <RoundButton type={"delete"} onClick={handleDeleteStory} />
+          <RoundButton
+            type={"edit"}
+            size={"normal"}
+            onClick={handleEditStory}
+          />
+          <RoundButton
+            type={"delete"}
+            size={"normal"}
+            onClick={handleDeleteStory}
+          />
         </>
       )}
       {disabled && <span>disabled</span>}
@@ -62,23 +101,39 @@ function FeedItem({ story }) {
           <span>🙍‍♂️</span>
           <span>{author.name}</span>
         </div>
-        <div className={styles.userRating}>
-          <div className={styles.ratings}>
-            <span>💪</span>
-            <span>{author.rating}</span>
-          </div>
-          <div className={styles.ratings}>
-            <span>👏</span>
-            <span>{author.rating}</span>
-          </div>
+        <div className={styles.ratings}>
+          <span>💪</span>
+          <span>{author.rating}</span>
         </div>
       </div>
       <div className={styles.story}>
-        {images && images[0] && (
+        {showFullImage === id && (
+          <FullImage
+            handleImageClick={handleImageClick}
+            handleImageNavigation={handleImageNavigation}
+            currentImageIndex={currentImageIndex}
+            numImages={numImages}
+            imgsrc={imgsrc}
+          />
+        )}
+        {!showFullImage && currentImageIndex > 0 && (
+          <ImageNavigation
+            direction={"previous"}
+            onClick={() => handleImageNavigation("previous")}
+          />
+        )}
+        {images && (
           <img
-            src={`${SERVER_URL}/img/stories/${images[0]}`}
+            onClick={handleImageClick}
+            src={imgsrc}
             className={styles.storyImage}
           ></img>
+        )}
+        {!showFullImage && currentImageIndex < numImages - 1 && (
+          <ImageNavigation
+            direction={"next"}
+            onClick={() => handleImageNavigation("next")}
+          />
         )}
         <h2 className={styles.storyTitle}>{title}</h2>
         <div className={styles.storyText}>

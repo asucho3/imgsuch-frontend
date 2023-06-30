@@ -1,14 +1,40 @@
 import styles from "./RoundButton.module.css";
-function RoundButton({ type, onClick }) {
+function RoundButton({ type, onClick, size }) {
+  let w, h, vw, vh, topOffset;
+  if (size === "normal") {
+    w = "4";
+    h = "4";
+    vw = "24";
+    vh = "24";
+    if (type === "edit") {
+      topOffset = 1;
+    }
+    if (type === "delete") {
+      topOffset = 7;
+    }
+  }
+  if (size === "small") {
+    w = "1.8";
+    h = "1.8";
+    vw = "24";
+    vh = "24";
+    if (type === "edit") {
+      topOffset = 2.7;
+    }
+    if (type === "delete") {
+      topOffset = 4.4;
+    }
+  }
+
   let markup;
   if (type === "edit") {
     markup = (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        viewBox="0 0 24 24"
+        viewBox={`0 0 ${vw} ${vh}`}
         stroke-width="1.5"
-        stroke="currentColor"
+        stroke="black"
         class="w-6 h-6"
       >
         <path
@@ -24,9 +50,9 @@ function RoundButton({ type, onClick }) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        viewBox="0 0 24 24"
+        viewBox={`0 0 ${vw} ${vh}`}
         stroke-width="1.5"
-        stroke="currentColor"
+        stroke="black"
         class="w-6 h-6"
       >
         <path
@@ -41,7 +67,9 @@ function RoundButton({ type, onClick }) {
   return (
     <div
       style={{
-        top: type === "edit" ? `1rem` : `7rem`,
+        width: `${w}rem`,
+        height: `${h}rem`,
+        top: `${topOffset}rem`,
         backgroundImage:
           type === "edit"
             ? `radial-gradient(

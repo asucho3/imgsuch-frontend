@@ -1,0 +1,25 @@
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.storyImage {
+  position: relative;
+  max-width: 80vw;
+  max-height: 80vh;
+  z-index: 999;
+}
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  background-color: var(--color-black);
+  opacity: 0.4;
+  z-index: 950;
+  backdrop-filter: blur(100px);
+}

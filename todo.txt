@@ -1,4 +1,10 @@
-done
-add all the API calls to utils/apiCalls.js
+ability to display multipe images
+ability to edit and delete comments
+user account page
+main search bar at the top right
 
-start implementing the API calls into the website, ex. fetch friends stories etc.
+tidy up the styling
+
+friend suggestions
+
+chat?

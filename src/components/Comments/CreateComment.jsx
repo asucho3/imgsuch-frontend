@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CreateComment.module.css";
-import { addComment } from "../../utils/apiCalls";
-function CreateComment({ storyId, setRefreshComments }) {
+import { addComment, updateComment } from "../../utils/apiCalls";
+function CreateComment({
+  storyId,
+  setRefreshComments,
+  editText,
+  commentId,
+  setEdit,
+}) {
   const [text, setText] = useState();
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(
+    function () {
+      setText(editText);
+    },
+    [editText, setText]
+  );
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -11,15 +24,20 @@ function CreateComment({ storyId, setRefreshComments }) {
     const textObj = { comment: text };
     console.log(textObj);
     try {
-      const res = await addComment(storyId, textObj);
-      console.log(res);
+      let res;
+      // if there is a commentId, this must be an update (because that value is passed when edit is enabled); otherwise, handle as a new comment
+      if (!commentId) res = await addComment(storyId, textObj);
+      if (commentId) res = await updateComment(commentId, textObj);
       if (res.status === "success") {
         setRefreshComments(true);
       }
     } catch (err) {
       console.log(err);
     } finally {
+      // after submitting, revert back to default values
       setIsLoading(false);
+      setEdit(null);
+      setText("");
     }
   }
 

@@ -12,6 +12,7 @@ function Feed() {
   const { dispatch, stories, defaultSearch } = useUser();
   const [search, setSearch] = useState("");
   const [filteredStories, setFilteredStories] = useState([]);
+  const [showFullImage, setShowFullImage] = useState(false);
 
   useEffect(
     function () {
@@ -27,7 +28,7 @@ function Feed() {
   useEffect(
     function () {
       // filter the stories by author name
-      setFilteredStories([...stories]);
+      setFilteredStories((filteredStories) => [...stories]);
       if (search.length > 0) {
         setFilteredStories(
           stories.filter((story) => {
@@ -46,8 +47,8 @@ function Feed() {
           setIsLoading(true);
           const res = await getFriendsStories();
           const myStories = await getMyStories();
-          res.data = [...res.data, ...myStories.data];
-          dispatch({ type: "user/storiesReceived", payload: res.data });
+          const combined = [...res.data, ...myStories.data];
+          dispatch({ type: "user/storiesReceived", payload: combined });
         } catch (err) {
           console.log(err);
         } finally {
@@ -81,7 +82,14 @@ function Feed() {
           .sort((a, b) => {
             return new Date(b.createdOn) - new Date(a.createdOn);
           })
-          .map((story, i) => <FeedItem story={story} key={story.id} />)}
+          .map((story, i) => (
+            <FeedItem
+              showFullImage={showFullImage}
+              setShowFullImage={setShowFullImage}
+              story={story}
+              key={story.id}
+            />
+          ))}
     </div>
   );
 }

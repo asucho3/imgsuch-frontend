@@ -133,10 +133,7 @@ export const sendFriendRequest = async function (target) {
 export const updateProfile = async function (id, updatedProfile) {
   const res = await fetch(`${API_URL}/users/${id}/updateProfile`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(updatedProfile),
+    body: updatedProfile,
     credentials: "include",
   });
   const data = await res.json();

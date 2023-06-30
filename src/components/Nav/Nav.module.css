@@ -10,7 +10,7 @@
   margin: 0 auto;
   justify-content: space-between;
   padding: 0 4rem;
-  z-index: 1000;
+  z-index: 50;
 }
 
 .container .navList {

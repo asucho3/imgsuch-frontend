@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toggleRateStory } from "../../utils/apiCalls";
 import styles from "./Upvote.module.css";
 import Loader from "./Loader";
@@ -8,6 +8,14 @@ function Upvote({ rating, storyId }) {
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch, ratedStories } = useUser();
   const [updatedRating, setUpdatedRating] = useState(rating);
+
+  // keep updatedRating and rating in sync
+  useEffect(
+    function () {
+      setUpdatedRating(rating);
+    },
+    [rating]
+  );
 
   async function handleUpvote() {
     if (isLoading) return;

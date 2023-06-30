@@ -29,6 +29,7 @@
   justify-self: start;
   font-size: 1.2rem;
   gap: 0.6rem;
+  word-wrap: break-word;
 }
 .userRating {
   display: flex;
@@ -51,6 +52,7 @@
 .story {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 62rem;
   min-height: 50rem;
   justify-content: center;
@@ -62,6 +64,10 @@
   max-height: 50rem;
   object-fit: scale-down;
   padding-bottom: 2rem;
+}
+
+.storyImage:hover {
+  cursor: pointer;
 }
 
 .storyTitle {
