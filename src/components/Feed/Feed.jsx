@@ -78,7 +78,7 @@ function Feed() {
       {!isLoading &&
         filteredStories.length > 0 &&
         filteredStories
-          .map((story) => story)
+          .slice()
           .sort((a, b) => {
             return new Date(b.createdOn) - new Date(a.createdOn);
           })
@@ -87,7 +87,7 @@ function Feed() {
               showFullImage={showFullImage}
               setShowFullImage={setShowFullImage}
               story={story}
-              key={story.id}
+              key={i}
             />
           ))}
     </div>
