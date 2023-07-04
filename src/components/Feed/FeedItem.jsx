@@ -44,7 +44,7 @@ function FeedItem({ story, showFullImage, setShowFullImage }) {
       const res = await disableStory(id);
       if (res.status === "success") {
         // after deleting, refresh the page
-        navigate("/app");
+        navigate("/");
       }
       console.log(res);
     } catch (err) {
