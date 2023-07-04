@@ -34,3 +34,11 @@
 .box::placeholder {
   font-size: 1.5rem;
 }
+
+@media (max-width: 34em) {
+  .box {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 3rem;
+  }
+}

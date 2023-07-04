@@ -44,7 +44,7 @@ function Nav() {
         <Link style={{ textDecoration: "inherit", color: "inherit" }} to="/app">
           <NavItem emoji="📷" text="Stories" />
         </Link>
-        <NavItem emoji="🚀" text="Trending" />
+        {/* <NavItem emoji="🚀" text="Trending" /> */}
         <NavItem emoji="🚪" text="Logout" onClick={handleLogout} />
       </ul>
       <Search />

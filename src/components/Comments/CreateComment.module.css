@@ -41,3 +41,12 @@
 .button:hover {
   background-color: var(--tertiary-color);
 }
+
+@media (max-width: 34em) {
+  .container {
+  }
+
+  .input {
+    font-size: 2rem;
+  }
+}

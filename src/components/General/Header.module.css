@@ -42,3 +42,9 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 34em) {
+  .header {
+    display: none;
+  }
+}

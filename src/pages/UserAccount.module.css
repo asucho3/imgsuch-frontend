@@ -30,3 +30,21 @@
   flex-direction: column;
   gap: 0.8rem;
 }
+
+@media (max-width: 34em) {
+  .container {
+    margin-top: 16rem;
+    width: 100vw;
+    gap: 1rem;
+  }
+  .header {
+    font-size: 4rem;
+  }
+  .formGroup {
+    font-size: 2.4rem;
+    gap: 2rem;
+  }
+  .inputGroup {
+    gap: 1rem;
+  }
+}

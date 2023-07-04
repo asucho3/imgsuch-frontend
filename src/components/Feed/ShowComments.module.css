@@ -14,3 +14,13 @@
   cursor: pointer;
   background-color: var(--secondary-color-dark);
 }
+
+@media (max-width: 34em) {
+  .container {
+    display: flex;
+    height: 10rem;
+    justify-content: center;
+    align-items: center;
+    width: 30rem;
+  }
+}

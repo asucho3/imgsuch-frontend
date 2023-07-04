@@ -84,3 +84,42 @@
   width: 20rem;
   gap: 1.2rem;
 }
+
+@media (max-width: 34em) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    width: 100vw;
+    padding: 4rem 4rem 10rem 4rem;
+    gap: 2rem;
+  }
+  .user {
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: auto;
+    width: auto;
+  }
+  .userName,
+  .ratings {
+    font-size: 2.4rem;
+    flex-direction: row;
+  }
+  .story {
+    justify-content: start;
+  }
+  .storyTitle {
+    font-size: 4.8rem;
+  }
+  .storyText {
+    font-size: 3.2rem;
+  }
+  .interactions {
+    flex-direction: row;
+    grid-column: 1/-1;
+    justify-self: start;
+    width: 100%;
+    gap: 1.2rem;
+  }
+}

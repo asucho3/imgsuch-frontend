@@ -43,3 +43,17 @@
   display: flex;
   gap: 1rem;
 }
+
+@media (max-width: 34em) {
+  .container {
+    width: 100vw;
+    margin-top: 16rem;
+    padding: 2rem;
+  }
+  .inputFields {
+    font-size: 3rem;
+  }
+  .text {
+    font-size: 2rem;
+  }
+}

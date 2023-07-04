@@ -80,3 +80,18 @@
   background-color: var(--secondary-color);
   justify-content: center;
 }
+
+@media (max-width: 34em) {
+  .friendName,
+  .friendRating,
+  .friendStories,
+  .friendStatus {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    flex-grow: 1;
+  }
+  .friendInteractions {
+    width: 100%;
+  }
+}

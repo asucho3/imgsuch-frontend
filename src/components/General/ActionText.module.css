@@ -12,3 +12,12 @@
 .action:hover {
   background-color: var(--primary-color-light);
 }
+
+/***************************************************************/
+/* BELOW 544px (phones) */
+/***************************************************************/
+@media (max-width: 34em) {
+  .action {
+    font-size: 2.4rem;
+  }
+}

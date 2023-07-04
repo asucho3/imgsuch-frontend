@@ -19,11 +19,16 @@ const initialState = {
   role: "user",
   stories: [],
   defaultSearch: "",
+  storySearch: "",
   isAuthenticated: false,
 };
 
 function reducer(state, action) {
   switch (action.type) {
+    case "user/setStorySearch": {
+      console.log(action.payload);
+      return { ...state, storySearch: action.payload };
+    }
     case "user/loginSuccess": {
       state = { ...state, ...action.payload, isAuthenticated: true };
       localStorage.setItem("user", JSON.stringify(state));
@@ -99,33 +104,19 @@ function reducer(state, action) {
       return state;
     }
     case "user/storyToggleRate": {
-      // if the story already exists in the state, take it off and reduce the rating
+      // if the story already exists in the state, take it off
       if (state.ratedStories.includes(action.payload)) {
         state = {
           ...state,
           ratedStories: state.ratedStories.filter(
             (ratedStory) => ratedStory !== action.payload
           ),
-          stories: [
-            ...state.stories.map((story) =>
-              story.id === action.payload
-                ? { ...story, rating: Number(story.rating) - 1 }
-                : story
-            ),
-          ],
         };
       } else {
-        // if the story is NOT in the state, add it and increase the rating
+        // if the story is NOT in the state, add it
         state = {
           ...state,
           ratedStories: [...state.ratedStories, action.payload],
-          stories: [
-            ...state.stories.map((story) =>
-              story.id === action.payload
-                ? { ...story, rating: Number(story.rating) + 1 }
-                : story
-            ),
-          ],
         };
       }
       localStorage.setItem("user", JSON.stringify(state));
@@ -182,6 +173,7 @@ const UserProvider = function ({ children }) {
       stories,
       isAuthenticated,
       defaultSearch,
+      storySearch,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -206,6 +198,7 @@ const UserProvider = function ({ children }) {
         dispatch,
         isAuthenticated,
         defaultSearch,
+        storySearch,
       }}
     >
       {children}

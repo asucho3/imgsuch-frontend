@@ -1,5 +1,7 @@
 const SERVER_URL = `http://127.0.0.1:3000`;
 const API_URL = `${SERVER_URL}/api/v1`;
+const testEmail = `testuser@example.com`;
+const testPassword = `test1234`;
 
 // auth
 
@@ -49,6 +51,23 @@ export const login = async function (email, password) {
   return data;
 };
 
+export const quickLogin = async function () {
+  const auth = JSON.stringify({
+    email: testEmail,
+    password: testPassword,
+  });
+  const res = await fetch(`${API_URL}/users/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: auth,
+    credentials: "include",
+  });
+  const data = await res.json();
+  return data;
+};
+
 export const logout = async function () {
   const res = await fetch(`${API_URL}/users/logout`, {
     method: "POST",
@@ -73,12 +92,12 @@ export const forgotPassword = async function (email) {
   return data;
 };
 
-export const resetPassword = async function (password, passwordConfirm) {
+export const resetPassword = async function (password, passwordConfirm, token) {
   const auth = JSON.stringify({
     password,
     passwordConfirm,
   });
-  const res = await fetch(`${API_URL}/users/resetPassword`, {
+  const res = await fetch(`${API_URL}/users/resetPassword/${token}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

@@ -34,3 +34,14 @@
   opacity: 1;
   transform: translate(-50%, 45%);
 }
+
+@media (max-width: 34em) {
+  .navItem {
+    height: 10rem;
+    width: 10rem;
+  }
+  .navText,
+  .navEmoji {
+    font-size: 2.5rem;
+  }
+}

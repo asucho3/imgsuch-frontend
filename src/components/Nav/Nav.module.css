@@ -10,7 +10,7 @@
   margin: 0 auto;
   justify-content: space-between;
   padding: 0 4rem;
-  z-index: 50;
+  z-index: 5000;
 }
 
 .container .navList {
@@ -19,4 +19,19 @@
   list-style: none;
   font-size: 2rem;
   align-items: center;
+}
+
+@media (max-width: 34em) {
+  .container {
+    display: grid;
+    left: 0;
+    transform: none;
+    grid-template-rows: 1fr 1fr;
+    width: 100vw;
+    margin: 0 auto;
+    height: 16rem;
+    padding: 1rem 1rem;
+    justify-content: stretch;
+    justify-items: start;
+  }
 }

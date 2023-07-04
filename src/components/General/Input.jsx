@@ -12,7 +12,6 @@ function Input({ field, type, setterFunction, children, id, defaultValue }) {
           value={field}
           onChange={(e) => setterFunction(e.target.value)}
           placeholder={children}
-          defaultValue={defaultValue}
         ></input>
         <label className={styles.label} htmlFor={id}>
           {children}

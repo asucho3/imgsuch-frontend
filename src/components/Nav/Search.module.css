@@ -52,3 +52,15 @@
     transform: rotate(1turn);
   }
 }
+
+@media (max-width: 34em) {
+  .searchContainer {
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
+  }
+  .searchContainer:hover .searchBar,
+  .searchBar:focus {
+    height: 2rem;
+  }
+}

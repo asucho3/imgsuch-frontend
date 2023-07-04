@@ -2,6 +2,8 @@ import styles from "./Login.module.css";
 import { login as apiLogin, checkLoggedIn } from "../utils/apiCalls";
 import { signup as apiSignup } from "../utils/apiCalls";
 import { forgotPassword as apiForgotPassword } from "../utils/apiCalls";
+import { resetPassword as apiResetPassword } from "../utils/apiCalls";
+import { quickLogin as apiQuickLogin } from "../utils/apiCalls";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
@@ -16,8 +18,10 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [token, setToken] = useState("");
   const [signup, setSignup] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
+  const [resetPassword, setResetPassword] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [alert, setAlert] = useState("");
   const { isAuthenticated, dispatch } = useUser();
@@ -92,6 +96,26 @@ function Login() {
       const res = await apiForgotPassword(email);
       if (res.status === "success") {
         setAlert("Check your email for instructions");
+        handleChangeOption("reset");
+      } else {
+        setAlert(res.message);
+      }
+      setProcessing(false);
+    } catch (err) {
+      setProcessing(false);
+      setAlert("Please try again later");
+    }
+  }
+
+  async function handleResetPassword(e) {
+    try {
+      e.preventDefault();
+      setProcessing(true);
+      const res = await apiResetPassword(password, passwordConfirm, token);
+      if (res.status === "success") {
+        dispatch({ type: "user/loginSuccess", payload: res.data.user });
+        console.log(res);
+        navigate("/app");
       } else {
         setAlert(res.message);
       }
@@ -119,20 +143,47 @@ function Login() {
       case "login": {
         setSignup(false);
         setForgotPassword(false);
+        setResetPassword(false);
         break;
       }
       case "signup": {
         setSignup(true);
         setForgotPassword(false);
+        setResetPassword(false);
         break;
       }
       case "forgot": {
         setSignup(false);
         setForgotPassword(true);
+        setResetPassword(false);
+        break;
+      }
+      case "reset": {
+        setSignup(false);
+        setForgotPassword(false);
+        setResetPassword(true);
         break;
       }
       default:
         return null;
+    }
+  }
+
+  async function handleQuickLogin() {
+    try {
+      setProcessing(true);
+      const res = await apiQuickLogin();
+      if (res.status === "success") {
+        dispatch({ type: "user/loginSuccess", payload: res.data.user });
+        navigate("/app");
+      } else {
+        dispatch({ type: "user/loginFailure" });
+        setAlert(res.message);
+      }
+      setProcessing(false);
+    } catch (err) {
+      setProcessing(false);
+      setAlert("Please try again later");
     }
   }
 
@@ -155,14 +206,22 @@ function Login() {
       <form
         className={styles.form}
         onSubmit={
-          signup ? handleSignup : forgotPassword ? handleForgot : handleLogin
+          signup
+            ? handleSignup
+            : forgotPassword
+            ? handleForgot
+            : resetPassword
+            ? handleResetPassword
+            : handleLogin
         }
       >
         <div className={styles.formBackground}></div>
         <div className={styles.loginBox}>
-          <Input field={email} type="text" setterFunction={setEmail}>
-            email
-          </Input>
+          {!resetPassword && (
+            <Input field={email} type="text" setterFunction={setEmail}>
+              email
+            </Input>
+          )}
           {!forgotPassword && (
             <Input
               field={password}
@@ -172,7 +231,7 @@ function Login() {
               password
             </Input>
           )}
-          {!forgotPassword && signup && (
+          {!forgotPassword && (signup || resetPassword) && (
             <Input
               field={passwordConfirm}
               type="password"
@@ -186,11 +245,20 @@ function Login() {
               username
             </Input>
           )}
+          {resetPassword && (
+            <Input field={token} type="text" setterFunction={setToken}>
+              token
+            </Input>
+          )}
         </div>
 
         <div className={styles.actionsBox}>
           <Button processing={processing}>
-            {signup ? "Sign up" : forgotPassword ? "Reset" : "Log in"}
+            {signup
+              ? "Sign up"
+              : forgotPassword || resetPassword
+              ? "Reset"
+              : "Log in"}
           </Button>
           {!forgotPassword && !signup && (
             <>
@@ -202,13 +270,22 @@ function Login() {
               </ActionText>
             </>
           )}
-          {(forgotPassword || signup) && (
+          {(forgotPassword || signup || resetPassword) && (
             <ActionText onClick={() => handleChangeOption("login")}>
               Go back
             </ActionText>
           )}
+          <ActionText onClick={() => handleQuickLogin()}>
+            Quick Login with a test user
+          </ActionText>
         </div>
       </form>
+      <div
+        className={styles.warning}
+        style={{ marginTop: "20px", fontWeight: "700" }}
+      >
+        This application is best viewed on a desktop computer
+      </div>
     </div>
   );
 }

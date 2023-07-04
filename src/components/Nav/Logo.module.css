@@ -21,3 +21,18 @@
 .logoContainer:hover .logoText {
   transform: scale(0.8);
 }
+
+@media (max-width: 34em) {
+  .logoContainer {
+    padding: 0.4rem;
+    border: 0.3rem solid var(--primary-color-light);
+    background-color: transparent;
+  }
+  .logoContainer:hover,
+  .logoContainer:hover .logoText {
+    transform: none;
+  }
+  .logoText {
+    font-size: 4rem;
+  }
+}

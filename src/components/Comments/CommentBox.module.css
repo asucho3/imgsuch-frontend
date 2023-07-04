@@ -10,3 +10,10 @@
   border-top-right-radius: 0.8rem;
   overflow-y: scroll;
 }
+
+@media (max-width: 34em) {
+  .commentBox {
+    height: 35rem;
+    width: 50rem;
+  }
+}

@@ -69,3 +69,14 @@
   top: 0;
   right: 0;
 }
+
+@media (max-width: 34em) {
+  .friendInteractionsSeeStories,
+  .friendInteractionsSendMessage,
+  .friendInteractionsRemoveFriend,
+  .friendInteractionsAddFriend,
+  .friendInteractionsRequestSent,
+  .friendInteractionsRequestReceived {
+    font-size: 1.6rem;
+  }
+}

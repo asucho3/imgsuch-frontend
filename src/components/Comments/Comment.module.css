@@ -58,3 +58,10 @@
 .editing {
   background-color: var(--tertiary-color-light);
 }
+
+@media (max-width: 34em) {
+  .commentText,
+  .commentUserName {
+    font-size: 2rem;
+  }
+}

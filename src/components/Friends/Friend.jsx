@@ -80,6 +80,7 @@ function Friend({ friend, isFriend }) {
   // see stories
   function handleSeeStories() {
     dispatch({ type: "search/setDefaultSearch", payload: name });
+    localStorage.setItem("defaultSearch", name);
     navigate("/app");
   }
 
@@ -133,7 +134,7 @@ function Friend({ friend, isFriend }) {
               type="friendInteractionsRequestSent"
               isProcessing={isProcessing}
             >
-              Cancel friend request
+              Cancel request
             </ButtonInteraction>
           )}
           {!isFriend && friendsRequestsReceived.includes(id) && (
@@ -154,13 +155,13 @@ function Friend({ friend, isFriend }) {
               >
                 See stories
               </ButtonInteraction>
-              <ButtonInteraction
+              {/* <ButtonInteraction
                 onClick={handleSendMessage}
                 type="friendInteractionsSendMessage"
                 isProcessing={isProcessing}
               >
                 Send message
-              </ButtonInteraction>
+              </ButtonInteraction> */}
               <ButtonInteraction
                 onClick={handleRemoveFriend}
                 type="friendInteractionsRemoveFriend"

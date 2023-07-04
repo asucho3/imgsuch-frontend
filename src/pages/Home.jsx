@@ -4,12 +4,12 @@ import NewStoryButton from "../components/General/NewStoryButton";
 import { useUser } from "../contexts/UserContext";
 import styles from "./Home.module.css";
 
-function Home() {
+function Home({ searchStory }) {
   const { name } = useUser();
   return (
     <>
       <Header>Welcome, {name}</Header>
-      <Feed className={styles.container} />
+      <Feed searchStory={searchStory} className={styles.container} />
       <NewStoryButton />
     </>
   );
