@@ -116,25 +116,29 @@ function FeedItem({ story, showFullImage, setShowFullImage }) {
             imgsrc={imgsrc}
           />
         )}
-        {!showFullImage && currentImageIndex > 0 && (
-          <ImageNavigation
-            direction={"previous"}
-            onClick={() => handleImageNavigation("previous")}
-          />
-        )}
+
         {images && (
-          <img
-            onClick={handleImageClick}
-            src={imgsrc}
-            className={styles.storyImage}
-          ></img>
+          <div className={styles.imageContainer}>
+            {!showFullImage && currentImageIndex > 0 && (
+              <ImageNavigation
+                direction={"previous"}
+                onClick={() => handleImageNavigation("previous")}
+              />
+            )}
+            <img
+              onClick={handleImageClick}
+              src={imgsrc}
+              className={styles.storyImage}
+            ></img>
+            {!showFullImage && currentImageIndex < numImages - 1 && (
+              <ImageNavigation
+                direction={"next"}
+                onClick={() => handleImageNavigation("next")}
+              />
+            )}
+          </div>
         )}
-        {!showFullImage && currentImageIndex < numImages - 1 && (
-          <ImageNavigation
-            direction={"next"}
-            onClick={() => handleImageNavigation("next")}
-          />
-        )}
+
         <h2 className={styles.storyTitle}>{title}</h2>
         <div className={styles.storyText}>
           <TextExpander>{text}</TextExpander>

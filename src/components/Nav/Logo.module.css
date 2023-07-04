@@ -23,7 +23,11 @@
 }
 
 @media (max-width: 34em) {
-  .logoContainer {
+  .logoContainer,
+  .logoText {
+    display: none;
+  }
+  /* .logoContainer {
     padding: 0.4rem;
     border: 0.3rem solid var(--primary-color-light);
     background-color: transparent;
@@ -34,5 +38,5 @@
   }
   .logoText {
     font-size: 4rem;
-  }
+  } */
 }

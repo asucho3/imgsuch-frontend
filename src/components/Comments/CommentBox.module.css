@@ -13,7 +13,7 @@
 
 @media (max-width: 34em) {
   .commentBox {
-    height: 35rem;
-    width: 50rem;
+    height: 25rem;
+    width: 100%;
   }
 }

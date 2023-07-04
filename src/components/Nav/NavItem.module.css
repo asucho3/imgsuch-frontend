@@ -37,11 +37,18 @@
 
 @media (max-width: 34em) {
   .navItem {
-    height: 10rem;
-    width: 10rem;
+    height: 8rem;
+    width: 8rem;
   }
   .navText,
   .navEmoji {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    opacity: 1;
+  }
+  .navText {
+    transform: translate(-50%, 45%);
+  }
+  .navEmoji {
+    transform: translate(-50%, -80%);
   }
 }

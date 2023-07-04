@@ -82,13 +82,17 @@
 }
 
 @media (max-width: 34em) {
+  .container,
+  .containerFriend {
+    width: 80%;
+  }
   .friendName,
   .friendRating,
   .friendStories,
   .friendStatus {
     display: flex;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 2rem;
     flex-grow: 1;
   }
   .friendInteractions {

@@ -63,11 +63,16 @@
   max-width: 62rem;
   max-height: 50rem;
   object-fit: scale-down;
-  padding-bottom: 2rem;
 }
 
 .storyImage:hover {
   cursor: pointer;
+}
+
+.imageContainer {
+  display: flex;
+  position: relative;
+  justify-content: center;
 }
 
 .storyTitle {
@@ -107,13 +112,20 @@
     flex-direction: row;
   }
   .story {
-    justify-content: start;
+    width: 100%;
+    justify-content: center;
+  }
+  .storyImage {
+    max-width: 100%;
+    height: auto;
+    justify-self: start;
+    margin-bottom: 2rem;
   }
   .storyTitle {
-    font-size: 4.8rem;
+    font-size: 3.2rem;
   }
   .storyText {
-    font-size: 3.2rem;
+    font-size: 1.6rem;
   }
   .interactions {
     flex-direction: row;

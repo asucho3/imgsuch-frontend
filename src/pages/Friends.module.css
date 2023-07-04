@@ -47,7 +47,12 @@
 @media (max-width: 34em) {
   .container,
   .selectorContainer {
-    margin-top: 4rem;
+    margin-top: 3.6rem;
     width: 100vw;
+    background-color: var(--secondary-color);
+  }
+  .list {
+    justify-content: center;
+    width: 100%;
   }
 }
