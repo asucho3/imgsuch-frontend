@@ -1,4 +1,4 @@
-const SERVER_URL = `https://imgsuch.onrender.com/`;
+const SERVER_URL = `https://imgsuch.onrender.com`;
 const API_URL = `${SERVER_URL}/api/v1`;
 const testEmail = `testuser@example.com`;
 const testPassword = `test1234`;
