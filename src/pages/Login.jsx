@@ -39,7 +39,7 @@ function Login() {
             dispatch({ type: "user/isLoggedIn" });
             navigate("/app");
           } else {
-            dispatch({ type: "user/logout" });
+            // dispatch({ type: "user/logout" });
             navigate("/");
           }
           setCheckAuth(false);
