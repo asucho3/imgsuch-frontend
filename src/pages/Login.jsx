@@ -29,28 +29,28 @@ function Login() {
   const [checkAuth, setCheckAuth] = useState(false);
 
   // check if the user is already logged in
-  useEffect(
-    function () {
-      async function isLoggedIn() {
-        try {
-          setCheckAuth(true);
-          const data = await checkLoggedIn();
-          if (data.status === "success") {
-            dispatch({ type: "user/isLoggedIn" });
-            navigate("/app");
-          } else {
-            // dispatch({ type: "user/logout" });
-            navigate("/");
-          }
-          setCheckAuth(false);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-      isLoggedIn();
-    },
-    [dispatch, navigate, setCheckAuth]
-  );
+  // useEffect(
+  //   function () {
+  //     async function isLoggedIn() {
+  //       try {
+  //         setCheckAuth(true);
+  //         const data = await checkLoggedIn();
+  //         if (data.status === "success") {
+  //           dispatch({ type: "user/isLoggedIn" });
+  //           navigate("/app");
+  //         } else {
+  //           // dispatch({ type: "user/logout" });
+  //           navigate("/");
+  //         }
+  //         setCheckAuth(false);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     }
+  //     isLoggedIn();
+  //   },
+  //   [dispatch, navigate, setCheckAuth]
+  // );
 
   // handle login, signup and forgotten pasword
   async function handleLogin(e) {
