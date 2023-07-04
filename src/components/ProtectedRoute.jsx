@@ -17,7 +17,7 @@ function ProtectedRoute({ children }) {
           if (data.status === "success") {
             dispatch({ type: "user/isLoggedIn" });
           } else {
-            dispatch({ type: "user/logout" });
+            // dispatch({ type: "user/logout" });
             navigate("/");
           }
           setCheckAuth(false);
