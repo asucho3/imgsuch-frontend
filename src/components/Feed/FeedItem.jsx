@@ -117,7 +117,7 @@ function FeedItem({ story, showFullImage, setShowFullImage }) {
           />
         )}
 
-        {images && (
+        {images?.length > 0 && (
           <div className={styles.imageContainer}>
             {!showFullImage && currentImageIndex > 0 && (
               <ImageNavigation
