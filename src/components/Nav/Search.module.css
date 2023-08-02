@@ -8,13 +8,13 @@
   background-color: var(--primary-color-light);
   transition: all 0.3s;
   height: 2rem;
-  padding: 2rem 2rem;
-  font-size: 2rem;
+  padding: 2rem 1rem;
+  font-size: 1.6rem;
   color: var(--color-black);
 }
 
 .searchBar::placeholder {
-  opacity: 0;
+  opacity: 1;
 }
 
 .searchBar:focus {

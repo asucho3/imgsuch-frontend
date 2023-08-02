@@ -8,7 +8,7 @@ function Search() {
       <input
         className={styles.searchBar}
         type="text"
-        placeholder="start typing..."
+        placeholder="search story"
         value={storySearch}
         onChange={(e) =>
           dispatch({ type: "user/setStorySearch", payload: e.target.value })
