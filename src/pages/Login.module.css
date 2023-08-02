@@ -77,6 +77,30 @@
   display: none;
 }
 
+.pleasewaitContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 4rem;
+}
+.pleasewait {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.pleasewaitText {
+  font-size: 3.6rem;
+  color: var(--primary-color-dark);
+}
+.pleasewaitSubText {
+  font-size: 1.6rem;
+  color: var(--primary-color-dark);
+}
+
 /***************************************************************/
 /* BELOW 544px (phones) */
 /***************************************************************/

@@ -13,6 +13,22 @@
   background-color: var(--primary-color-light);
 }
 
+.action.quickLogin {
+  animation-name: blinking;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blinking {
+  from {
+    background-color: var(--tertiary-color-light);
+  }
+  to {
+    background-color: var(--secondary-color-light);
+  }
+}
+
 /***************************************************************/
 /* BELOW 544px (phones) */
 /***************************************************************/

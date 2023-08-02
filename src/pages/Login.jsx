@@ -12,6 +12,7 @@ import Input from "../components/General/Input";
 import Button from "../components/General/Button";
 import ActionText from "../components/General/ActionText";
 import Alert from "../components/General/Alert";
+import Loader from "../components/General/Loader";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -27,12 +28,14 @@ function Login() {
   const { isAuthenticated, dispatch } = useUser();
   const navigate = useNavigate();
   const [checkAuth, setCheckAuth] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // check if the user is already logged in
   useEffect(
     function () {
       async function isLoggedIn() {
         try {
+          setIsLoading(true);
           setCheckAuth(true);
           const data = await checkLoggedIn();
           if (data.status === "success") {
@@ -45,6 +48,8 @@ function Login() {
           setCheckAuth(false);
         } catch (err) {
           console.log(err);
+        } finally {
+          setIsLoading(false);
         }
       }
       isLoggedIn();
@@ -187,8 +192,25 @@ function Login() {
     }
   }
 
+  // show spinner
+  if (isLoading)
+    return (
+      <div className={styles.pleasewaitContainer}>
+        <Loader size="big" />
+        <div className={styles.pleasewait}>
+          <p className={styles.pleasewaitText}>
+            Connecting to backend, please wait...
+          </p>{" "}
+          <p className={styles.pleasewaitSubText}>
+            This could take up to a minute
+          </p>
+        </div>
+      </div>
+    );
+
   // early return in case the checkAuth process is not done
-  if (checkAuth) return;
+  // if (checkAuth) return;
+
   return (
     <div className={styles.container}>
       <Logo />
@@ -275,7 +297,7 @@ function Login() {
               Go back
             </ActionText>
           )}
-          <ActionText onClick={() => handleQuickLogin()}>
+          <ActionText variation="quickLogin" onClick={() => handleQuickLogin()}>
             Quick Login with a test user
           </ActionText>
         </div>
