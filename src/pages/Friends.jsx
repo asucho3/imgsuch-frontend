@@ -23,7 +23,8 @@ import Loader from "../components/General/Loader";
 // ];
 
 function Friends() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingFriends, setIsLoadingFriends] = useState(false);
+  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [users, setUsers] = useState([]);
   const {
     friends,
@@ -41,7 +42,7 @@ function Friends() {
     function () {
       async function fetchFriends() {
         try {
-          setIsLoading(true);
+          setIsLoadingFriends(true);
           const friendsObj = await getFriends();
           const friendsIds = friendsObj.data.friends.map((friend) => friend.id);
           dispatch({
@@ -51,7 +52,7 @@ function Friends() {
         } catch (err) {
           console.log(err);
         } finally {
-          setIsLoading(false);
+          setIsLoadingFriends(false);
         }
       }
       fetchFriends();
@@ -62,13 +63,13 @@ function Friends() {
   useEffect(function () {
     async function fetchUsers() {
       try {
-        setIsLoading(true);
+        setIsLoadingUsers(true);
         const usersObj = await getAllUsers();
         setUsers(usersObj.data);
       } catch (err) {
         console.log(err);
       } finally {
-        setIsLoading(false);
+        setIsLoadingUsers(false);
       }
     }
     fetchUsers();
@@ -238,17 +239,17 @@ function Friends() {
         </Input>
       </div>
       <div className={styles.container}>
-        {isLoading && (
+        {(isLoadingUsers || isLoadingFriends) && (
           <div className={styles.spinnerContainer}>
             <Loader size={"big"} />{" "}
           </div>
         )}
-        {!isLoading && filteredUsers.length === 0 && (
+        {!isLoadingUsers && !isLoadingFriends && filteredUsers.length === 0 && (
           <div className={styles.listEmpty}>
             Nothing to display here! Try changing your filtering options
           </div>
         )}
-        {!isLoading && filteredUsers.length > 0 && (
+        {!isLoadingUsers && !isLoadingFriends && filteredUsers.length > 0 && (
           <ul className={styles.list}>
             {filteredUsers
               .map((user) => {
