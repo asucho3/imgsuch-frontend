@@ -1,5 +1,5 @@
-const SERVER_URL = `https://imgsuch.onrender.com`; // PRODUCTION
-// const SERVER_URL = `http://127.0.0.1:3000`; // DEVELOPMENT
+// const SERVER_URL = `https://imgsuch.onrender.com`; // PRODUCTION
+const SERVER_URL = `http://127.0.0.1:3000`; // DEVELOPMENT
 const API_URL = `${SERVER_URL}/api/v1`;
 const testEmail = `testuser@example.com`;
 const testPassword = `test1234`;
