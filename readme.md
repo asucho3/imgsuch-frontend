@@ -15,7 +15,25 @@ It makes use of several API requests to the backend; all these requests are grou
 
 # How to Install and Run the Project
 
-This project was built with Vite and deployed via Github <-> Netlify integration, so if you want to test the code in a developer environment all you need to do after pulling the source code is run the standard script:
+- first, you'll need to run the backend locally:
+
+```
+https://github.com/asucho3/imgsuch
+```
+
+- in the file apiCalls.js, comment out:
+
+```
+const SERVER_URL = `https://imgsuch.onrender.com`; // PRODUCTION
+```
+
+- and remove the comments (enable):
+
+```
+const SERVER_URL = `http://127.0.0.1:3000`; // DEVELOPMENT
+```
+
+- finally:
 
 ```
 npm run dev
