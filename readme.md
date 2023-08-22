@@ -15,7 +15,13 @@ It makes use of several API requests to the backend; all these requests are grou
 
 # How to Install and Run the Project
 
-- first, you'll need to run the backend locally:
+- install dependencies
+
+```
+npm i
+```
+
+you'll need to run the backend locally:
 
 ```
 https://github.com/asucho3/imgsuch
@@ -27,7 +33,7 @@ https://github.com/asucho3/imgsuch
 const SERVER_URL = `https://imgsuch.onrender.com`; // PRODUCTION
 ```
 
-- and remove the comments (enable):
+- and remove the comments (ie. enable):
 
 ```
 const SERVER_URL = `http://127.0.0.1:3000`; // DEVELOPMENT
