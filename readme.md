@@ -21,11 +21,7 @@ It makes use of several API requests to the backend; all these requests are grou
 npm i
 ```
 
-you'll need to run the backend locally:
-
-```
-https://github.com/asucho3/imgsuch
-```
+you'll need to run the [backend](https://github.com/asucho3/imgsuch) locally
 
 - in the file apiCalls.js, comment out:
 
